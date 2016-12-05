@@ -158,10 +158,10 @@ class rpc_protocol_1_1 extends rpc_protocol{
     }
 
     function encode_result($result,$id){
-        $rt = $this->json_encode_exp($result,"encode result to json ERROR");
+       // $rt = $this->json_encode_exp($result,"encode result to json ERROR");
         $result_object=array(
             "version"=>"1.1",
-            "result"=>$rt,
+            "result"=>$result,
             "error"=>null,
             "id"=>$id
         );
@@ -198,10 +198,10 @@ class rpc_protocol_2_0 extends rpc_protocol{
     }
 
     function encode_result($result,$id){
-        $rt = $this->json_encode_exp($result,"encode result to json ERROR");
+    //    $rt = $this->json_encode_exp($result,"encode result to json ERROR");
         $result_object=array(
             "jsonrpc"=>"2.0",
-            "result"=>$rt,
+            "result"=>$result,
             "id"=>$id
         );
         $rt_text = $this->json_encode_exp($result_object,"encode result to json ERROR , the api result encode is success,but encode to result_object failed");
