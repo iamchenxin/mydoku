@@ -8,7 +8,6 @@
 namespace xx_jsonrpc;
 require_once("remote.php");
 
-
 abstract class E_xx_jsonrpc extends \Exception{
     /*
 $std_msg=  array(
@@ -237,7 +236,7 @@ class remote_api{
         }
     }
 }
-
+require_once("IXR_Library.php");
 class doku_remote_api{
     protected $doku_remote;
     function __construct(){
@@ -253,6 +252,23 @@ class doku_remote_api{
         }catch (\RemoteException $e){
             throw new E_Method_not_found($e->getMessage());
         }
+    }
+
+    /**
+     * @param string|int $data iso date(yyyy[-]mm[-]dd[ hh:mm[:ss]]) or timestamp
+     * @return IXR_Date
+     */
+    public function toDate($data) {
+        $d = new \IXR_Date($data);
+        return $d->getIso();
+    }
+
+    /**
+     * @param string $data
+     * @return IXR_Base64
+     */
+    public function toFile($data) {
+        return base64_encode($data);
     }
 }
 /*
